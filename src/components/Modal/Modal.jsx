@@ -1,7 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Modal.module.css";
+import TimerModal from "../../TimerModal/TimerModal";
 
 const Modal = ({ isOpen, onClose, image, label, instructions }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedEgg, setSelectedEgg] = useState({ time: "", label: "" });
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
@@ -18,6 +22,13 @@ const Modal = ({ isOpen, onClose, image, label, instructions }) => {
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
+
+  const openTimerModal = () => {
+    if (recipe) {
+      setSelectedEgg({ time: recipe.time, label: recipe.label });
+      setModalOpen(true);
+    }
+  };
 
   const recipe = instructions.find((item) => item.label === label);
 
@@ -41,7 +52,10 @@ const Modal = ({ isOpen, onClose, image, label, instructions }) => {
               ))}
             </ol>
 
-            <button className="text-center p-1 border-2 border-[#455667]  rounded hover:bg-[#5a6d82] hover:text-white hover:cursor-pointer">
+            <button
+              onClick={openTimerModal}
+              className="text-center p-1 border-2 border-[#455667]  rounded hover:bg-[#5a6d82] hover:text-white hover:cursor-pointer"
+            >
               Start Timer
             </button>
           </div>
@@ -49,6 +63,12 @@ const Modal = ({ isOpen, onClose, image, label, instructions }) => {
           <p>No instructions found for this egge type</p>
         )}
       </div>
+      <TimerModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        time={recipe.time}
+        label={recipe.label}
+      />
     </div>
   );
 };
