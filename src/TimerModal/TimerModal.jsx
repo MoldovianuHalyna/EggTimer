@@ -3,10 +3,9 @@ import { useEffect, useRef, useState } from "react";
 const TimerModal = ({ isOpen, onClose, time, label }) => {
   const [secondsLeft, setSecondsLeft] = useState(time * 60);
   const [paused, setPaused] = useState(false);
-  const beepRef = useRef(null);
+
   const intervalRef = useRef(null);
 
-  // Reset timer on open / time change
   useEffect(() => {
     if (isOpen) {
       setSecondsLeft(time * 60);
@@ -14,7 +13,6 @@ const TimerModal = ({ isOpen, onClose, time, label }) => {
     }
   }, [isOpen, time]);
 
-  // Countdown (auto-start on open, pauses when paused)
   useEffect(() => {
     if (!isOpen || paused) return;
     intervalRef.current = setInterval(() => {
@@ -23,21 +21,11 @@ const TimerModal = ({ isOpen, onClose, time, label }) => {
     return () => clearInterval(intervalRef.current);
   }, [isOpen, paused]);
 
-  // Escape to close
   useEffect(() => {
     const handleKeyDown = (e) => e.key === "Escape" && onClose();
     if (isOpen) document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
-
-  // Beep when done
-  useEffect(() => {
-    if (secondsLeft === 0 && beepRef.current) {
-      beepRef.current.currentTime = 0;
-      beepRef.current.play().catch(() => {});
-      if (navigator.vibrate) navigator.vibrate(200);
-    }
-  }, [secondsLeft]);
 
   if (!isOpen) return null;
 
@@ -49,9 +37,12 @@ const TimerModal = ({ isOpen, onClose, time, label }) => {
   return (
     <div
       className="fixed inset-0 bg-black/60 flex items-center justify-center"
-      onClick={(e) => e.stopPropagation()}
+      onClick={onClose}
     >
-      <div className="bg-white p-6 rounded-lg shadow-lg text-center w-[min(90vw,420px)]">
+      <div
+        className="bg-white p-6 rounded-lg shadow-lg text-center w-[min(90vw,420px)]"
+        onClick={(e) => e.stopPropagation()}
+      >
         <h2 className="text-xl font-bold mb-4">{label} Timer</h2>
 
         <p className="text-4xl font-mono tabular-nums mb-4">
