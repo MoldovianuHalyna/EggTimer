@@ -8,6 +8,7 @@
   cursor: pointer;
   border-radius: 2px;
   transition: all 250ms linear;
+
   &:hover {
     transform: scale(1.05);
   }
@@ -16,8 +17,10 @@
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
   }
 }
-
 .image {
   width: 100px;
   height: 150px;
+}
+
+@media screen and (min-width: 768px) {
 }
