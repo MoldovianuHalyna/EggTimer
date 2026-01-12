@@ -1,6 +1,5 @@
 import { useState } from "react";
 import EgglistItem from "../EgglistItem/EgglistItem";
-import s from "./EggList.module.css";
 import Modal from "../Modal/Modal";
 import { EGGS } from "../../constants";
 import { INSTRUCTIONS } from "../../constants";
@@ -15,7 +14,7 @@ const Egglist = () => {
   };
 
   return (
-    <div className={s.egglistContainer}>
+    <div className="mt-5 grid grird-cols-1 place-items-cente gap-10 md:grid-cols-2 md:gap-5">
       {EGGS.map((egg) => (
         <EgglistItem
           key={egg.label}
