@@ -14,7 +14,7 @@ const Egglist = () => {
   };
 
   return (
-    <div className="mt-5 grid grird-cols-1 place-items-cente gap-10 md:grid-cols-2 md:gap-5">
+    <div className="mt-5 grid grird-cols-1 place-items-cente gap-10 md:grid-cols-3 md:gap-5">
       {EGGS.map((egg) => (
         <EgglistItem
           key={egg.label}
