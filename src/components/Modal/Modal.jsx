@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import styles from "./Modal.module.css";
 import TimerModal from "../../TimerModal/TimerModal";
 
 const Modal = ({ isOpen, onClose, image, label, instructions }) => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedEgg, setSelectedEgg] = useState({ time: "", label: "" });
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -25,7 +23,6 @@ const Modal = ({ isOpen, onClose, image, label, instructions }) => {
 
   const openTimerModal = () => {
     if (recipe) {
-      setSelectedEgg({ time: recipe.time, label: recipe.label });
       setModalOpen(true);
     }
   };
@@ -33,34 +30,45 @@ const Modal = ({ isOpen, onClose, image, label, instructions }) => {
   const recipe = instructions.find((item) => item.label === label);
 
   return (
-    <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeBtn} onClick={onClose}>
+    <div
+      className="fixed inset-0 z-[1000] flex items-center justify-center bg-[var(--color-backdrop)]"
+      onClick={onClose}
+    >
+      <div
+        className="relative flex min-w-[320px] max-w-[90vw] flex-col items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-card-bg)] p-8 text-center shadow-[0_4px_24px_var(--color-shadow)] text-[var(--color-text)]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          className="absolute right-4 top-3 text-3xl leading-none text-[var(--color-text)]"
+          onClick={onClose}
+        >
           ×
         </button>
-        <h2 className="text-center pb-8">{label}</h2>
-        <img src={image} alt={label} className={styles.image} />
+        <h2 className="pb-8 text-center text-2xl font-semibold text-[var(--color-heading)]">
+          {label}
+        </h2>
+        <img src={image} alt={label} className="mb-4 h-auto w-52" />
 
         {recipe ? (
-          <div>
-            <h3 className="text-left pb-5 ">Instructions</h3>
-            <ol>
+          <div className="w-full">
+            <h3 className="pb-5 text-left text-xl font-semibold text-[var(--color-heading)]">
+              Instructions
+            </h3>
+            <ol className="list-decimal space-y-2 pl-5 text-left">
               {recipe.steps.map((step, index) => (
-                <li className="text-left" key={index}>
-                  {index + 1}.{step}
-                </li>
+                <li key={index}>{step}</li>
               ))}
             </ol>
 
             <button
               onClick={openTimerModal}
-              className="text-center p-1 border-2 border-[#455667]  rounded hover:bg-[#5a6d82] hover:text-white hover:cursor-pointer"
+              className="mt-6 inline-flex items-center justify-center rounded-full border border-transparent bg-gradient-to-br from-[var(--color-accent)] to-[color-mix(in_srgb,var(--color-accent)_70%,var(--color-card-bg))] px-6 py-2 font-semibold tracking-wide text-[var(--color-button-text)] shadow-[0_6px_16px_var(--color-shadow)] transition-transform duration-200 hover:-translate-y-0.5"
             >
               Start Timer
             </button>
           </div>
         ) : (
-          <p>No instructions found for this egge type</p>
+          <p>No instructions found for this egg type</p>
         )}
       </div>
       <TimerModal

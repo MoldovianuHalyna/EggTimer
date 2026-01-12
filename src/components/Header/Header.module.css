@@ -4,15 +4,15 @@
   row-gap: 10px;
   font-weight: 350;
   font-size: 20px;
-  color: #333232;
+  color: var(--color-text);
 }
 
 .header {
-  color: black;
+  color: var(--color-heading);
   font-size: 30px;
   font-weight: 400;
   padding-bottom: 5px;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid var(--color-border);
+  box-shadow: 0 1px 4px var(--color-shadow);
   border-radius: 2px;
 }
