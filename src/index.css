@@ -62,7 +62,7 @@ p {
   gap: 8px;
   padding: 8px 14px;
   margin-bottom: 24px;
-  border-radius: 999px;
+  border-radius: 10px;
   border: 1px solid var(--color-border);
   background: linear-gradient(
     135deg,
