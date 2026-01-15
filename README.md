@@ -1,12 +1,43 @@
-# React + Vite
+# 🥚 Egg Timer App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and intuitive **Egg Timer** application built with **React** and **Tailwind CSS**, designed to help you cook eggs perfectly every time.
+The app includes multiple egg-cooking states, clear instructions, a customizable timer, and a **dark/light mode switcher** for better usability.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+* ⏱ **Predefined egg cooking modes**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+  * Soft-boiled
+  * Medium-boiled
+  * Hard-boiled
+etc.
+---
+
+## 🛠 Tech Stack
+
+* **React** – component-based UI and state management
+* **Tailwind CSS** – utility-first styling
+* **JavaScript (ES6+)**
+
+---
+
+## 🍳 How to Use
+
+1. Choose the type of egg you want to cook
+2. Read the provided cooking instructions
+3. Start the timer
+4. Wait for the timer to finish
+5. Enjoy your perfectly cooked egg 🥚
+
+---
+
+## 🌙 Dark / Light Mode
+
+Use the toggle switch to change between:
+
+* **Light mode** – clean and bright
+* **Dark mode** – comfortable for low-light environments
+
+The theme updates instantly across the app.
